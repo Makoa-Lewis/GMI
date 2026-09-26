@@ -36,4 +36,27 @@
       .then(function(){send.disabled=false});
   });
   }
+
+  var af=document.getElementById("apply-form");
+  if(af){
+    var ast=document.getElementById("apply-status"),asend=document.getElementById("a-send");
+    af.addEventListener("input",function(e){var f=e.target.closest(".field");if(f)f.classList.remove("invalid");ast.textContent="";ast.className="form-status"});
+    af.addEventListener("submit",function(e){
+      e.preventDefault();
+      var bad=null;
+      af.querySelectorAll("[required]").forEach(function(el){
+        var ok=el.type==="checkbox"?el.checked:el.value.trim()!=="";
+        if(ok&&el.type==="email")ok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());
+        var f=el.closest(".field");if(f)f.classList.toggle("invalid",!ok);
+        if(!ok&&!bad)bad=el;
+      });
+      if(bad){ast.className="form-status err";ast.textContent=bad.id==="a-consent"?"Please check the box at the end to confirm.":"Please fill in the highlighted fields.";bad.focus();return}
+      asend.disabled=true;ast.className="form-status";ast.textContent="Submitting…";
+      var fd=new FormData(af),roles=fd.getAll("roles");fd.delete("roles");fd.append("roles",roles.join(", "));
+      fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams(fd).toString()})
+        .then(function(r){if(!r.ok)throw new Error(r.status);var n=af.elements["name"].value.trim().split(" ")[0];af.reset();ast.className="form-status ok";ast.textContent="Thank you, "+n+". Your application was received. We'll be in touch before February 28, 2027."})
+        .catch(function(){ast.className="form-status err";ast.textContent="Your application couldn't be sent. Please try again, or email info@globalmusicinitiative.org."})
+        .then(function(){asend.disabled=false});
+    });
+  }
 })();

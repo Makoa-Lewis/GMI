@@ -237,3 +237,16 @@ footer{background:var(--navy-deep);color:var(--on-navy);padding-block:56px 40px}
   .brand span{font-size:24px}
   .brand svg{height:30px}
 }
+
+/* application form */
+.group{border:0;margin:0;padding:0 0 22px;display:flex;flex-direction:column;gap:16px;border-bottom:1px solid var(--line)}
+.group legend{padding:0;margin-bottom:4px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.field .label{font-size:15px;font-weight:600}
+.opt{font-weight:400;color:var(--muted)}
+.field textarea.short{min-height:90px}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;margin-top:4px}
+.checks label,.consent{display:flex;align-items:flex-start;gap:10px;font-size:16px;font-weight:400;line-height:1.4;cursor:pointer}
+.checks input,.consent input{width:18px;height:18px;margin-top:2px;flex:none;accent-color:var(--navy)}
+.field.invalid input,.field.invalid select,.field.invalid textarea{border-color:#A2361C}
+.hero-actions .btn.sun{margin-top:4px}
+@media (max-width:560px){.checks{grid-template-columns:1fr}}
