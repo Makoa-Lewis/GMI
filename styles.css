@@ -292,3 +292,8 @@ footer{background:var(--navy-deep);color:var(--on-navy);padding-block:56px 40px}
 .roles h3{font-size:19px}
 @media (max-width:900px){.flow{grid-template-columns:1fr 1fr}.roles{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.flow,.roles{grid-template-columns:1fr}}
+.gallery{grid-template-columns:1fr 1fr}
+.gallery .feature{grid-column:1/-1}
+.photo.pano{aspect-ratio:auto;display:block}
+.photo.pano img{height:auto}
+@media (max-width:560px){.gallery{grid-template-columns:1fr}}
