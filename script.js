@@ -61,4 +61,16 @@
         .then(function(){asend.disabled=false});
     });
   }
+
+  document.querySelectorAll(".yt").forEach(function(b){
+    b.addEventListener("click",function(){
+      var f=document.createElement("iframe");
+      f.className="yt-frame";
+      f.src="https://www.youtube-nocookie.com/embed/"+b.dataset.id+"?autoplay=1&rel=0";
+      f.title=b.getAttribute("aria-label").replace("Play video: ","");
+      f.allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+      f.allowFullscreen=true;
+      b.replaceWith(f);
+    });
+  });
 })();
