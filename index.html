@@ -14,6 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="styles.css?v=202610011730">
+<link rel="stylesheet" href="ai.css?v=202610291700">
 </head>
 <body>
 <header class="site-header" id="top">
@@ -24,6 +25,7 @@
     </button>
     <ul class="nav-links" id="nav-links">
       <li><a href="#about">About</a></li>
+      <li><a href="#mentorship">Mentorship</a></li>
       <li><a href="nepal.html">Nepal Project</a></li>
       <li><a href="vanderbilt.html">Vanderbilt Chapter</a></li>
       <li><a href="plan.html">Our Plan</a></li>
@@ -77,6 +79,61 @@
     </div>
   </section>
 
+  <section id="mentorship" aria-labelledby="mentor-h">
+    <div class="wrap mentor-grid">
+      <div class="mentor-copy">
+        <span class="eyebrow"><i aria-hidden="true"><b style="height:10px;background:var(--land)"></b><b style="height:16px;background:var(--sun)"></b><b style="height:10px;background:var(--sea)"></b></i>Mentorship hub</span>
+        <h2 id="mentor-h">Find your next step in music.</h2>
+        <p class="lede">Tell Hulili, GMI's AI advisor, where you are and where you want to go. You'll get a starting roadmap, suggested mentors and GMI resources in seconds.</p>
+        <ul class="mentor-points">
+          <li style="--c:var(--land)">For high school, college and graduate students in any music field</li>
+          <li style="--c:var(--sun)">Grant writing, archival work, career paths, auditions and more</li>
+          <li style="--c:var(--sea)">Every roadmap can lead to a real mentor match with GMI</li>
+        </ul>
+        <p class="ai-note">Hulili is a Hawaiian word for a bridge or ladder across a gully.</p>
+      </div>
+
+      <div class="ai-card" id="mentor-advisor">
+        <div class="ai-card-head">
+          <span class="ai-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#F2C230" stroke-width="2.4" stroke-linecap="round"><path d="M5 9v6M9.5 5v14M14.5 7v10M19 10v4"/></svg></span>
+          <div>
+            <h3>AI Mentorship &amp; Portfolio Advisor</h3>
+            <p>Powered by Hulili · preview</p>
+          </div>
+        </div>
+        <div class="ai-card-body">
+          <form class="ai-form" id="mentor-form" aria-describedby="mentor-form-hint">
+            <p class="ai-note" id="mentor-form-hint">Choose a few details. Nothing you enter is saved.</p>
+            <div class="form-row">
+              <div class="field"><label for="m-category">Your field</label>
+                <select id="m-category" name="category">
+                  <option>Performance</option><option>Ethnomusicology</option><option>Composition</option>
+                  <option>Music education</option><option>Music business and technology</option><option>Something else</option>
+                </select>
+              </div>
+              <div class="field"><label for="m-level">Your level</label>
+                <select id="m-level" name="level">
+                  <option>High school</option><option selected>Undergraduate</option><option>Graduate</option><option>Early career</option>
+                </select>
+              </div>
+            </div>
+            <div class="field"><label for="m-goal">Primary goal</label>
+              <select id="m-goal" name="goal">
+                <option>Career pathways</option><option>Grant writing</option><option>Archival and field work</option>
+                <option>Auditions and portfolio</option><option>Starting a GMI chapter</option>
+              </select>
+            </div>
+            <div class="field"><label for="m-notes">Anything else? <span style="font-weight:400;color:var(--muted)">(optional)</span></label>
+              <input id="m-notes" name="notes" maxlength="500" placeholder="Your instrument, school or a goal in your own words">
+            </div>
+            <button class="btn" type="submit" style="align-self:flex-start">Generate Custom Mentorship Roadmap</button>
+          </form>
+          <div id="mentor-output" aria-live="polite" aria-busy="false"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="navy" id="nepal" aria-labelledby="nepal-h">
     <div class="wrap">
       <div class="nepal-grid">
@@ -93,6 +150,33 @@
           <li><span>What we're making</span><span>A substantial documentary and a full audio, video, and written archive</span></li>
           <li><span>Faculty advisor</span><span><a class="text-link light" href="rilling.html">Kevin Rilling</a></span></li>
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="white" id="archive" aria-labelledby="archive-h">
+    <div class="wrap archive-wrap">
+      <div class="sec-head" style="margin-bottom:0">
+        <span class="eyebrow">Cultural heritage · Living archive</span>
+        <h2 id="archive-h">Explore the archive with Hulili.</h2>
+        <p class="lede">Ask about the traditions GMI documents and how we do it. Answers point to field recordings, documents and sources, and the archive grows after the 2027 fieldwork in Nepal.</p>
+      </div>
+      <div class="archive-shell" id="archive-explorer">
+        <div class="roadmap-head">
+          <span class="ai-badge on-navy">GMI Archival AI Explorer · preview</span>
+        </div>
+        <form class="archive-search" role="search" aria-label="Ask the GMI archive">
+          <label for="archive-q" class="sr-only">Ask a question about the GMI archive</label>
+          <input id="archive-q" type="search" maxlength="500" autocomplete="off" placeholder="Ask about the sarangi, Gandharva music or how GMI works">
+          <button class="btn sun" type="submit">Ask</button>
+        </form>
+        <div class="chips" aria-label="Suggested questions">
+          <button class="chip" type="button">Tell me about Gandharva sarangi traditions</button>
+          <button class="chip" type="button">How does GMI document oral histories?</button>
+          <button class="chip" type="button">What role have women played in Gandharva music?</button>
+          <button class="chip" type="button">When is the Nepal fieldwork?</button>
+        </div>
+        <div class="archive-log" aria-live="polite"></div>
       </div>
     </div>
   </section>
@@ -182,6 +266,7 @@
       </div>
       <ul>
         <li><a href="#about">About</a></li>
+        <li><a href="#mentorship">Mentorship</a></li>
         <li><a href="nepal.html">Nepal Project</a></li>
         <li><a href="vanderbilt.html">Vanderbilt Chapter</a></li>
         <li><a href="plan.html">Our Plan</a></li>
@@ -195,5 +280,6 @@
 </footer>
 
 <script src="script.js?v=202610011730"></script>
+<script src="ai.js?v=202610291700" defer></script>
 </body>
 </html>
