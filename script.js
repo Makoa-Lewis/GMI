@@ -62,6 +62,30 @@
     });
   }
 
+  var mf=document.getElementById("mentor-interest-form");
+  if(mf){
+    var mst=document.getElementById("mentor-status"),msend=document.getElementById("mt-send");
+    mf.addEventListener("input",function(e){var f=e.target.closest(".field");if(f)f.classList.remove("invalid");mst.textContent="";mst.className="form-status"});
+    mf.addEventListener("submit",function(e){
+      e.preventDefault();
+      var bad=null;
+      mf.querySelectorAll("[required]").forEach(function(el){
+        var ok=el.value.trim()!=="";
+        if(ok&&el.type==="email")ok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());
+        var f=el.closest(".field");if(f)f.classList.toggle("invalid",!ok);
+        if(!ok&&!bad)bad=el;
+      });
+      if(bad){mst.className="form-status err";mst.textContent="Please fill in the highlighted fields.";bad.focus();return}
+      msend.disabled=true;mst.className="form-status";mst.textContent="Sending…";
+      var fd=new FormData(mf),areas=fd.getAll("areas");fd.delete("areas");fd.append("areas",areas.join(", "));
+      fd.set("_replyto",mf.elements["email"].value.trim());
+      fetch("https://formsubmit.co/ajax/info@globalmusicinitiative.org",{method:"POST",headers:{"Accept":"application/json"},body:fd})
+        .then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(j){if(j&&String(j.success)==="false")throw new Error(j.message);var n=mf.elements["name"].value.trim().split(" ")[0];mf.reset();mst.className="form-status ok";mst.textContent="Thank you, "+n+". You're on the list, and we'll reach out before the program begins."})
+        .catch(function(){mst.className="form-status err";mst.textContent="Your form couldn't be sent. Please try again, or email info@globalmusicinitiative.org."})
+        .then(function(){msend.disabled=false});
+    });
+  }
+
   document.querySelectorAll(".yt").forEach(function(b){
     b.addEventListener("click",function(){
       var f=document.createElement("iframe");

@@ -413,3 +413,7 @@ footer{background:var(--navy-deep);color:var(--on-navy);padding-block:56px 40px}
 @media (max-width:1000px){.lens-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:900px){.media-grid,.learn-grid{grid-template-columns:1fr}}
 @media (max-width:560px){.lens-grid{grid-template-columns:1fr}}
+
+/* keep long dropdown answers from widening the page on phones */
+.contact-grid>*{min-width:0}
+.field select{width:100%;min-width:0;max-width:100%}
