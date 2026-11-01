@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Student portal demo · GMI</title>
+<meta name="description" content="A demo of the GMI student portal.">
+<meta property="og:title" content="Student portal demo · GMI">
+<meta property="og:description" content="A demo of the GMI student portal.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0B3C5D">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="styles.css?v=202611011300">
+<link rel="stylesheet" href="ai.css?v=202611011300">
+<link rel="stylesheet" href="v2.css?v=202611011300">
+</head>
+<body>
+<div data-no-hulili-drawer hidden></div>
+<header class="portal-bar">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Global Music Initiative home"><svg viewBox="-2 -2 176 106" aria-hidden="true" focusable="false"><g fill="none" stroke-width="9" stroke-linecap="round"><path d="M7.82 28.36V73.64" stroke="#5FB062"/><path d="M23.45 12.58V89.42" stroke="#5FB062"/><path d="M39.09 5.91V96.09" stroke="#5FB062"/><path d="M54.73 4.64V97.36" stroke="#5FB062"/><path d="M70.36 8.32V93.68" stroke="#F2C230"/><path d="M86.00 18.41V83.59" stroke="#F2C230"/><path d="M101.64 8.32V93.68" stroke="#F2C230"/><path d="M117.27 4.64V97.36" stroke="#4FA3DB"/><path d="M132.91 5.91V96.09" stroke="#4FA3DB"/><path d="M148.55 12.58V89.42" stroke="#4FA3DB"/><path d="M164.18 28.36V73.64" stroke="#4FA3DB"/></g></svg><span>GMI</span></a>
+    <span class="portal-tag">Student</span>
+    <div class="who"><span>Sample student</span><a class="out" href="login.html">Exit demo</a></div>
+  </div>
+</header>
+<p class="demo-strip">You're viewing a demo with sample data. Hulili's answers here are previews while the real model is in development.</p>
+
+<main class="wrap portal" data-portal>
+  <nav class="portal-nav" role="tablist" aria-label="Student portal">
+    <button type="button" role="tab" id="t-coach" aria-controls="p-coach" aria-selected="true">Hulili</button>
+    <button type="button" role="tab" id="t-classes" aria-controls="p-classes" aria-selected="false">Masterclasses</button>
+    <button type="button" role="tab" id="t-practice" aria-controls="p-practice" aria-selected="false">Practice log</button>
+    <button type="button" role="tab" id="t-mentor" aria-controls="p-mentor" aria-selected="false">My mentor</button>
+  </nav>
+
+  <div class="portal-main">
+    <section id="p-coach" role="tabpanel" aria-labelledby="t-coach">
+      <div style="margin-bottom:20px">
+        <h1>Hi Jordan, what are we working on today?</h1>
+        <p class="sub">Ask Hulili anything about your instrument, practice or music theory.</p>
+      </div>
+      <div class="prow">
+        <div class="pcard chat grow">
+          <div class="chat-log" id="coach-log" role="log" aria-live="polite" aria-label="Conversation with Hulili">
+            <div class="msg bot">Hi Jordan! Last time you worked on paradiddles. Want to keep going with those, or try something new today?</div>
+          </div>
+          <div class="ai-quick" id="coach-quick" aria-label="Suggested questions">
+            <button type="button">How do I get faster at rudiments?</button>
+            <button type="button">I get nervous before auditions</button>
+            <button type="button">Make me a 20 minute practice plan</button>
+            <button type="button">How do I count tricky rhythms?</button>
+          </div>
+          <form id="coach-form">
+            <label for="coach-input" class="sr-only">Message Hulili</label>
+            <input id="coach-input" type="text" maxlength="500" autocomplete="off" placeholder="Ask about scales, rhythm, nerves or practice">
+            <button class="btn sm" type="submit">Send</button>
+          </form>
+        </div>
+        <div>
+          <div class="pcard">
+            <h2>This week</h2>
+            <div class="bars-week" aria-hidden="true">
+              <div><b style="height:60%"></b><span>M</span></div><div><b style="height:35%"></b><span>T</span></div><div><b class="zero" style="height:4%"></b><span>W</span></div><div><b style="height:80%"></b><span>T</span></div><div><b style="height:50%"></b><span>F</span></div><div><b class="zero" style="height:4%"></b><span>S</span></div><div><b class="zero" style="height:4%"></b><span>S</span></div>
+            </div>
+            <p class="ai-note" style="margin-top:12px">Sample data · 4 practice days this week</p>
+          </div>
+          <div class="side-card">
+            <span class="k">Your mentor</span>
+            <strong>Sample mentor</strong>
+            <span>Next check-in Thursday</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="p-classes" role="tabpanel" aria-labelledby="t-classes" hidden>
+      <div style="margin-bottom:20px">
+        <h1>Masterclasses</h1>
+        <p class="sub">Lessons from professional musicians, shared with GMI students with their permission. Titles below are examples.</p>
+      </div>
+      <div class="class-grid">
+        <article class="class-card"><div class="thumb" style="background:var(--sea)"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(0,0,0,.25)"/><path d="M10 8l6 4-6 4z" fill="#fff"/></svg></div><div class="info"><span class="tag">Percussion</span><h3>Rudiments that build speed</h3><p>[Guest artist] · 24 min</p></div></article>
+        <article class="class-card"><div class="thumb" style="background:var(--land)"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(0,0,0,.25)"/><path d="M10 8l6 4-6 4z" fill="#fff"/></svg></div><div class="info"><span class="tag">Performance</span><h3>Handling stage nerves</h3><p>[Guest artist] · 18 min</p></div></article>
+        <article class="class-card"><div class="thumb" style="background:#C99A00"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(0,0,0,.25)"/><path d="M10 8l6 4-6 4z" fill="#fff"/></svg></div><div class="info"><span class="tag">Theory</span><h3>Reading rhythms with confidence</h3><p>[Guest artist] · 21 min</p></div></article>
+        <article class="class-card"><div class="thumb" style="background:var(--navy)"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(0,0,0,.25)"/><path d="M10 8l6 4-6 4z" fill="#fff"/></svg></div><div class="info"><span class="tag">Winds</span><h3>Breathing for a fuller sound</h3><p>[Guest artist] · 27 min</p></div></article>
+        <article class="class-card"><div class="thumb" style="background:#2B6A2E"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(0,0,0,.25)"/><path d="M10 8l6 4-6 4z" fill="#fff"/></svg></div><div class="info"><span class="tag">Strings</span><h3>Bow control basics</h3><p>[Guest artist] · 19 min</p></div></article>
+        <article class="class-card"><div class="thumb" style="background:var(--sea)"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(0,0,0,.25)"/><path d="M10 8l6 4-6 4z" fill="#fff"/></svg></div><div class="info"><span class="tag">Practice</span><h3>How professionals practice</h3><p>[Guest artist] · 30 min</p></div></article>
+      </div>
+    </section>
+
+    <section id="p-practice" role="tabpanel" aria-labelledby="t-practice" hidden>
+      <div style="margin-bottom:20px">
+        <h1>Practice log</h1>
+        <p class="sub">Log what you worked on. Hulili uses it to suggest what's next.</p>
+      </div>
+      <div class="pcard">
+        <form id="log-form" class="ai-form" style="flex-direction:row;flex-wrap:wrap;align-items:flex-end;gap:12px;margin-bottom:8px">
+          <div class="field" style="flex:2 1 240px"><label for="log-what">What did you practice?</label><input id="log-what" maxlength="120" placeholder="For example, scales and the first page of my solo"></div>
+          <div class="field" style="flex:1 1 120px"><label for="log-min">Minutes</label><input id="log-min" type="number" min="1" max="600" value="20"></div>
+          <button class="btn" type="submit">Log practice</button>
+        </form>
+        <ul class="list" id="log-list">
+          <li><div><div class="t">Paradiddles and solo, page 1</div><div class="s">Thursday</div></div><span class="pill g">40 min</span></li>
+          <li><div><div class="t">Scales and warm up</div><div class="s">Wednesday</div></div><span class="pill g">20 min</span></li>
+          <li><div><div class="t">Watched "Rudiments that build speed"</div><div class="s">Tuesday</div></div><span class="pill g">25 min</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="p-mentor" role="tabpanel" aria-labelledby="t-mentor" hidden>
+      <div style="margin-bottom:20px">
+        <h1>My mentor</h1>
+        <p class="sub">Your mentor is a GMI volunteer who helps you find what you need next.</p>
+      </div>
+      <div class="prow">
+        <div class="pcard">
+          <h2>Goals we set together</h2>
+          <ul class="list">
+            <li style="display:block"><div class="t">Even paradiddles at a slow tempo</div><div class="progress" style="margin-top:8px"><b style="width:70%"></b></div></li>
+            <li style="display:block"><div class="t">Learn the first page of my solo</div><div class="progress" style="margin-top:8px"><b style="width:40%"></b></div></li>
+            <li style="display:block"><div class="t">Find a teacher for summer lessons</div><div class="progress" style="margin-top:8px"><b style="width:20%"></b></div></li>
+          </ul>
+        </div>
+        <div class="pcard">
+          <h2>Check-ins</h2>
+          <ul class="list">
+            <li><div><div class="t">Next check-in</div><div class="s">Thursday, online in the GMI portal</div></div><span class="pill y">Upcoming</span></li>
+            <li><div><div class="t">Found a used snare through a school loan program</div><div class="s">Two weeks ago</div></div><span class="pill g">Done</span></li>
+            <li><div><div class="t">Set goals for the semester</div><div class="s">Last month</div></div><span class="pill g">Done</span></li>
+          </ul>
+          <p class="ai-note" style="margin-top:12px">Check-ins happen in the GMI portal so GMI staff can help if needed.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+<script src="portal.js?v=202611011300" defer></script>
+
+<script src="script.js?v=202611011300"></script>
+<script src="ai.js?v=202611011300" defer></script>
+</body>
+</html>

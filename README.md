@@ -1,5 +1,14 @@
 # GMI
-Global Music Initiative Starter Site
+Global Music Initiative website
+
+## Pages
+- index.html home · how.html how it works · makoa.html founder portfolio
+- join.html student application with financial need · mentor.html mentor interest · apply.html 2027 Nepal cohort
+- nepal.html Nepal project and archive explorer · team.html team and governance · partners.html partners and investors
+- login.html, student.html, admin.html portal demos with sample data (portal.js)
+- plan.html and vanderbilt.html now redirect to partners.html and team.html
+
+Styles are styles.css, ai.css and v2.css. Forms send through formsubmit.co to info@globalmusicinitiative.org.
 
 ## Hulili AI features
 

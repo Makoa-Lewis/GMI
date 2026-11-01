@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Admin portal demo · GMI</title>
+<meta name="description" content="A demo of the GMI admin portal.">
+<meta property="og:title" content="Admin portal demo · GMI">
+<meta property="og:description" content="A demo of the GMI admin portal.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0B3C5D">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="styles.css?v=202611011300">
+<link rel="stylesheet" href="ai.css?v=202611011300">
+<link rel="stylesheet" href="v2.css?v=202611011300">
+</head>
+<body>
+<div data-no-hulili-drawer hidden></div>
+<header class="portal-bar">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Global Music Initiative home"><svg viewBox="-2 -2 176 106" aria-hidden="true" focusable="false"><g fill="none" stroke-width="9" stroke-linecap="round"><path d="M7.82 28.36V73.64" stroke="#5FB062"/><path d="M23.45 12.58V89.42" stroke="#5FB062"/><path d="M39.09 5.91V96.09" stroke="#5FB062"/><path d="M54.73 4.64V97.36" stroke="#5FB062"/><path d="M70.36 8.32V93.68" stroke="#F2C230"/><path d="M86.00 18.41V83.59" stroke="#F2C230"/><path d="M101.64 8.32V93.68" stroke="#F2C230"/><path d="M117.27 4.64V97.36" stroke="#4FA3DB"/><path d="M132.91 5.91V96.09" stroke="#4FA3DB"/><path d="M148.55 12.58V89.42" stroke="#4FA3DB"/><path d="M164.18 28.36V73.64" stroke="#4FA3DB"/></g></svg><span>GMI</span></a>
+    <span class="portal-tag">Admin</span>
+    <div class="who"><span>Sample admin</span><a class="out" href="login.html">Exit demo</a></div>
+  </div>
+</header>
+<p class="demo-strip">You're viewing a demo. Every name and number here is sample data.</p>
+
+<main class="wrap portal" data-portal>
+  <nav class="portal-nav" role="tablist" aria-label="Admin portal">
+    <button type="button" role="tab" id="t-over" aria-controls="p-over" aria-selected="true">Overview</button>
+    <button type="button" role="tab" id="t-apps" aria-controls="p-apps" aria-selected="false">Applications</button>
+    <button type="button" role="tab" id="t-students" aria-controls="p-students" aria-selected="false">Students</button>
+    <button type="button" role="tab" id="t-mentors" aria-controls="p-mentors" aria-selected="false">Mentors</button>
+    <button type="button" role="tab" id="t-lib" aria-controls="p-lib" aria-selected="false">Masterclasses</button>
+    <button type="button" role="tab" id="t-review" aria-controls="p-review" aria-selected="false">Hulili review</button>
+  </nav>
+
+  <div class="portal-main">
+    <section id="p-over" role="tabpanel" aria-labelledby="t-over">
+      <div style="margin-bottom:20px"><h1>Overview</h1><p class="sub">How students, mentors and Hulili are doing this week.</p></div>
+      <div class="stat-tiles">
+        <div><span>Active students</span><strong>18</strong></div>
+        <div><span>Active mentors</span><strong>7</strong></div>
+        <div><span>New applications</span><strong>5</strong></div>
+        <div><span>Waiting for review</span><strong>3</strong></div>
+      </div>
+      <div class="prow" style="margin-top:20px">
+        <div class="pcard">
+          <h2>Students who may need a check-in</h2>
+          <ul class="list">
+            <li><div><div class="t">Sam</div><div class="s">No practice logged in 9 days</div></div><button class="btn ghost sm" type="button">Message mentor</button></li>
+            <li><div><div class="t">Ava</div><div class="s">Mentioned wrist pain to Hulili</div></div><button class="btn ghost sm" type="button">Message mentor</button></li>
+            <li><div><div class="t">Leo</div><div class="s">Hasn't been matched with a mentor</div></div><button class="btn ghost sm" type="button">Match now</button></li>
+          </ul>
+        </div>
+        <div class="pcard">
+          <h2>Top questions students ask Hulili</h2>
+          <ol style="margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px">
+            <li>How do I practice when I'm short on time?</li>
+            <li>How do I get faster without getting tense?</li>
+            <li>What should I play for an audition?</li>
+            <li>How do I read rhythms with dotted notes?</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="p-apps" role="tabpanel" aria-labelledby="t-apps" hidden>
+      <div style="margin-bottom:20px"><h1>Applications</h1><p class="sub">Review new students and requests for financial support. Need details are visible only to staff.</p></div>
+      <div class="table-box">
+        <table>
+          <thead><tr><th scope="col">Student</th><th scope="col">Grade</th><th scope="col">Instrument</th><th scope="col">Support requested</th><th scope="col">Need shown</th><th scope="col">Status</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Maya</strong></td><td>8th</td><td>Marimba</td><td>Full</td><td>School meals, single income</td><td><span class="pill y">Needs review</span></td></tr>
+            <tr><td><strong>Eli</strong></td><td>10th</td><td>Trumpet</td><td>Partial</td><td>Recent hardship</td><td><span class="pill y">Follow-up call</span></td></tr>
+            <tr><td><strong>Rosa</strong></td><td>6th</td><td>Not sure yet</td><td>Full</td><td>SNAP, school meals</td><td><span class="pill g">Approved</span></td></tr>
+            <tr><td><strong>Noah</strong></td><td>11th</td><td>Guitar</td><td>None</td><td>Not requested</td><td><span class="pill g">Approved</span></td></tr>
+            <tr><td><strong>Lily</strong></td><td>7th</td><td>Violin</td><td>Full</td><td>Medicaid</td><td><span class="pill n">Waiting on guardian</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="p-students" role="tabpanel" aria-labelledby="t-students" hidden>
+      <div style="margin-bottom:20px"><h1>Students</h1><p class="sub">Every student, their mentor and how they're doing.</p></div>
+      <div class="table-box">
+        <table>
+          <thead><tr><th scope="col">Student</th><th scope="col">Instrument</th><th scope="col">Mentor</th><th scope="col">Practice this week</th><th scope="col">Guardian permission</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Jordan</strong></td><td>Snare drum</td><td>Sample mentor A</td><td>115 min</td><td><span class="pill g">On file</span></td></tr>
+            <tr><td><strong>Ava</strong></td><td>Violin</td><td>Sample mentor B</td><td>90 min</td><td><span class="pill g">On file</span></td></tr>
+            <tr><td><strong>Sam</strong></td><td>Clarinet</td><td>Sample mentor A</td><td>0 min</td><td><span class="pill g">On file</span></td></tr>
+            <tr><td><strong>Leo</strong></td><td>Trumpet</td><td>Not matched</td><td>45 min</td><td><span class="pill y">Pending</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="p-mentors" role="tabpanel" aria-labelledby="t-mentors" hidden>
+      <div style="margin-bottom:20px"><h1>Mentors</h1><p class="sub">Volunteer mentors from GMI chapters. No one is matched until their background check and training are complete.</p></div>
+      <div class="table-box">
+        <table>
+          <thead><tr><th scope="col">Mentor</th><th scope="col">Chapter</th><th scope="col">Students</th><th scope="col">Background check</th><th scope="col">Training</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Sample mentor A</strong></td><td>Vanderbilt</td><td>2 of 3</td><td><span class="pill g">Cleared</span></td><td><span class="pill g">Complete</span></td></tr>
+            <tr><td><strong>Sample mentor B</strong></td><td>Vanderbilt</td><td>1 of 2</td><td><span class="pill g">Cleared</span></td><td><span class="pill g">Complete</span></td></tr>
+            <tr><td><strong>Sample mentor C</strong></td><td>Vanderbilt</td><td>0 of 3</td><td><span class="pill y">In progress</span></td><td><span class="pill n">Not started</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="p-lib" role="tabpanel" aria-labelledby="t-lib" hidden>
+      <div style="margin-bottom:20px"><h1>Masterclass library</h1><p class="sub">Only masterclasses with a signed artist agreement are used by Hulili.</p></div>
+      <div class="pcard">
+        <ul class="list">
+          <li><div><div class="t">Rudiments that build speed</div><div class="s">[Guest artist] · Percussion</div></div><span><span class="pill g">Agreement signed</span> <span class="s">In Hulili</span></span></li>
+          <li><div><div class="t">Handling stage nerves</div><div class="s">[Guest artist] · Performance</div></div><span><span class="pill g">Agreement signed</span> <span class="s">In Hulili</span></span></li>
+          <li><div><div class="t">Breathing for a fuller sound</div><div class="s">[Guest artist] · Winds</div></div><span><span class="pill y">Agreement pending</span> <span class="s">Not used yet</span></span></li>
+          <li><div><div class="t">How professionals practice</div><div class="s">[Guest artist] · Practice</div></div><span><span class="pill n">Not requested</span> <span class="s">Not used yet</span></span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="p-review" role="tabpanel" aria-labelledby="t-review" hidden>
+      <div style="margin-bottom:20px"><h1>Hulili review</h1><p class="sub">Hulili flags conversations a person should see. Staff can mark them reviewed or pass them to the student's mentor.</p></div>
+      <div class="pcard review" data-review>
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px"><strong>Jordan</strong><span class="pill y">Asked for a person</span></div>
+        <blockquote>Can I talk to a real teacher about my audition piece?</blockquote>
+        <div class="acts"><button class="btn sm" type="button" data-done>Mark reviewed</button><button class="btn ghost sm" type="button">Send to mentor</button></div>
+      </div>
+      <div class="pcard review" data-review>
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px"><strong>Ava</strong><span class="pill r">Possible pain or injury</span></div>
+        <blockquote>My wrist hurts after I practice for a long time. Is that normal?</blockquote>
+        <div class="acts"><button class="btn sm" type="button" data-done>Mark reviewed</button><button class="btn ghost sm" type="button">Send to mentor</button></div>
+      </div>
+      <div class="pcard review" data-review>
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px"><strong>Sam</strong><span class="pill n">Low confidence answer</span></div>
+        <blockquote>What's the fingering for a high B flat on clarinet?</blockquote>
+        <div class="acts"><button class="btn sm" type="button" data-done>Mark reviewed</button><button class="btn ghost sm" type="button">Send to mentor</button></div>
+      </div>
+    </section>
+  </div>
+</main>
+<script src="portal.js?v=202611011300" defer></script>
+
+<script src="script.js?v=202611011300"></script>
+<script src="ai.js?v=202611011300" defer></script>
+</body>
+</html>

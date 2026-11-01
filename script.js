@@ -1,12 +1,12 @@
 (function(){
   var header=document.querySelector(".site-header");
-  function onScroll(){header.classList.toggle("scrolled",window.scrollY>8)}
-  window.addEventListener("scroll",onScroll,{passive:true});onScroll();
+  if(header){function onScroll(){header.classList.toggle("scrolled",window.scrollY>8)}
+  window.addEventListener("scroll",onScroll,{passive:true});onScroll();}
 
   var btn=document.getElementById("menu-btn"),links=document.getElementById("nav-links");
-  function setMenu(open){links.classList.toggle("open",open);btn.setAttribute("aria-expanded",open);btn.setAttribute("aria-label",open?"Close menu":"Open menu")}
+  if(btn&&links){function setMenu(open){links.classList.toggle("open",open);btn.setAttribute("aria-expanded",open);btn.setAttribute("aria-label",open?"Close menu":"Open menu")}
   btn.addEventListener("click",function(){setMenu(!links.classList.contains("open"))});
-  links.addEventListener("click",function(e){if(e.target.closest("a"))setMenu(false)});
+  links.addEventListener("click",function(e){if(e.target.closest("a"))setMenu(false)});}
 
   if(document.getElementById("contact-form")){
   document.querySelectorAll("[data-topic]").forEach(function(a){
@@ -85,6 +85,38 @@
         .then(function(){msend.disabled=false});
     });
   }
+
+  /* generic forms (data-gmi-form): validate, join checkbox groups, send */
+  document.querySelectorAll("form[data-gmi-form]").forEach(function(gf){
+    var st=gf.querySelector(".form-status"),sb=gf.querySelector("[type=submit]");
+    gf.addEventListener("input",function(e){var f=e.target.closest(".field");if(f)f.classList.remove("invalid");st.textContent="";st.className="form-status"});
+    gf.addEventListener("submit",function(e){
+      e.preventDefault();
+      var bad=null;
+      gf.querySelectorAll("[required]").forEach(function(el){
+        var ok=el.type==="checkbox"?el.checked:el.value.trim()!=="";
+        if(ok&&el.type==="email")ok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());
+        var f=el.closest(".field");if(f)f.classList.toggle("invalid",!ok);
+        if(!ok&&!bad)bad=el;
+      });
+      if(bad){st.className="form-status err";st.textContent=bad.type==="checkbox"?"Please check the box at the end to confirm.":"Please fill in the highlighted fields.";bad.focus();return}
+      sb.disabled=true;st.className="form-status";st.textContent="Submitting…";
+      var fd=new FormData(gf),seen={};
+      gf.querySelectorAll("input[type=checkbox]").forEach(function(c){
+        if(c.name==="consent"||seen[c.name])return;seen[c.name]=1;
+        var v=fd.getAll(c.name);fd.delete(c.name);fd.append(c.name,v.join(", ")||"None selected");
+      });
+      var em=gf.elements["email"];if(em)fd.set("_replyto",em.value.trim());
+      fetch("https://formsubmit.co/ajax/info@globalmusicinitiative.org",{method:"POST",headers:{"Accept":"application/json"},body:fd})
+        .then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(j){if(j&&String(j.success)==="false")throw new Error(j.message);gf.reset();st.className="form-status ok";st.textContent=gf.dataset.success||"Thank you. Your form was sent."})
+        .catch(function(){st.className="form-status err";st.textContent="Your form couldn't be sent. Please try again, or email info@globalmusicinitiative.org."})
+        .then(function(){sb.disabled=false});
+    });
+  });
+
+  /* pre-select the contact topic from links like index.html?topic=Partnering#contact */
+  var topicSel=document.getElementById("f-topic"),qt=new URLSearchParams(location.search).get("topic");
+  if(topicSel&&qt){for(var ti=0;ti<topicSel.options.length;ti++){if(topicSel.options[ti].text===qt)topicSel.selectedIndex=ti}}
 
   document.querySelectorAll(".yt").forEach(function(b){
     b.addEventListener("click",function(){

@@ -113,6 +113,7 @@
     var out;
     if (p.task === "mentorship-roadmap") out = mockMentorship(p);
     else if (p.task === "archive-qa") out = mockArchive(prompt);
+    else if (p.task === "coach") out = mockCoach(prompt);
     else out = mockAssistant(prompt, p.audience);
     out = normalizeResponse(out);
     out.meta = { source: "mock", reason: info && info.reason };
@@ -154,9 +155,9 @@
       "Performance": "Performance mentor", "Ethnomusicology": "Ethnomusicology mentor", "Composition": "Composition mentor",
       "Music education": "Music education mentor", "Music business and technology": "Music industry mentor"
     }[cat] || "GMI mentor";
-    var resources = [{ label: "GMI's five-year plan", href: "plan.html" }];
+    var resources = [{ label: "How GMI works", href: "how.html" }];
     if (goal === "Archival and field work") resources.unshift({ label: "The Nepal Sarangi Documentation Project", href: "nepal.html" });
-    if (goal === "Starting a GMI chapter") resources.unshift({ label: "The Vanderbilt founding chapter", href: "vanderbilt.html" });
+    if (goal === "Starting a GMI chapter") resources.unshift({ label: "GMI's team and founding chapter", href: "team.html" });
     if (goal === "Grant writing" || goal === "Archival and field work") resources.push({ label: "Apply to the 2027 Nepal cohort", href: "apply.html" });
     resources.push({ label: "Ask GMI for a mentor match", href: "index.html#contact" });
     return {
@@ -190,7 +191,7 @@
         { type: "doc", title: "Consent and community protocol", detail: "Guided by The Initiatives Foundation", status: "In development" },
         { type: "audio", title: "Interviews with musicians and elders", detail: "Audio and video, with written transcripts", status: "Planned for 2027 fieldwork" }
       ],
-      citations: [{ label: "GMI Nepal project page", href: "nepal.html" }, { label: "GMI five-year plan", href: "plan.html" }]
+      citations: [{ label: "GMI Nepal project page", href: "nepal.html" }]
     };
     if (has(q, ["women", "gender", "female"])) return {
       text: "Historically, Gandharva music was mostly performed by men, who traveled to perform while women often held household roles. Sons learned the sarangi and songs by traveling with their fathers.\n\nThe project plans to explore the role of women in Gandharva households, how their experiences differ from male musicians', and how these roles are changing across generations.",
@@ -209,30 +210,60 @@
     };
   }
 
+  function mockCoach(q) {
+    var src = function (t) { return [{ label: "a sample masterclass on " + t, href: "#" }]; };
+    if (has(q, ["rudiment", "faster", "speed", "tense", "paradiddle"])) return {
+      text: "Speed comes from relaxed control, not force.\n\n1. Start slow with a metronome, slow enough that every stroke sounds even.\n2. Play two minutes clean, then raise the tempo a few clicks.\n3. Keep your grip loose and let the stick rebound.\n\nIf it starts to feel tense, go back down. Tension is the speed limit.",
+      citations: src("rudiments")
+    };
+    if (has(q, ["nerv", "scared", "anxious", "audition", "perform"])) return {
+      text: "Almost every performer gets nervous. A few things help.\n\n1. Practice performing, not just playing. Run your piece start to finish for a friend or your phone camera.\n2. Plan your first few notes so you can start on autopilot.\n3. Slow your breathing before you walk in.\n\nNerves mean you care. The goal is to play well with them, not to make them disappear.",
+      citations: src("performance")
+    };
+    if (has(q, ["plan", "practice", "routine", "minute", "time"])) return {
+      text: "Here's a balanced 20 minutes.\n\n5 min warm up with slow, even strokes\n5 min one rudiment or scale\n8 min your piece, hardest four bars first\n2 min play something you love, just for fun\n\nLog it when you're done and I'll suggest what to focus on tomorrow.",
+      citations: src("practice habits")
+    };
+    if (has(q, ["rhythm", "count", "read", "dotted", "note"])) return {
+      text: "Count out loud while you clap the rhythm first, then play it. If a bar feels tricky, write the counts under the notes and play it at half speed.\n\nDotted notes are easier if you count the smaller beats inside them, like 1-e-and-a.",
+      citations: src("reading rhythm")
+    };
+    if (has(q, ["hurt", "pain", "wrist", "injur"])) return {
+      text: "Pain is a signal to stop and rest, not to push through. Please tell a parent or guardian and your GMI mentor. If it keeps hurting, a doctor should check it.\n\nI've let GMI staff know so someone can follow up with you."
+    };
+    return {
+      text: "Good question. In the full version I'll answer from GMI's masterclasses and link the exact lesson. For this preview, try asking about rudiments, nerves, rhythm or a practice plan."
+    };
+  }
+
   function mockAssistant(q, audience) {
     if (has(q, ["hulili", "name", "who are you", "what are you"])) return {
       text: "I'm Hulili, GMI's AI assistant. In Hawaiian, hulili can mean a bridge or ladder across a gully, a way across a gap. That's what GMI hopes to be for students who don't have access to music teachers or opportunities.\n\nI'm a preview right now, so my answers come from GMI's website."
     };
     if (audience === "board" || has(q, ["board", "governance", "nonprofit", "501", "metric", "impact", "expansion", "chapter"])) {
       if (has(q, ["chapter", "expansion", "grow", "metric"])) return {
-        text: "GMI's plan grows in stages. The Vanderbilt founding chapter comes first, then a published chapter model for other universities, then chapters in Hawaiʻi, Paraguay, Nepal and Portugal.\n\nImpact metrics will be shared publicly as programs launch. GMI focuses on outcomes like students served, lessons completed and recordings returned to communities, rather than reach alone.",
-        links: [{ label: "See the five-year plan", href: "plan.html" }]
+        text: "GMI is starting small on purpose. The Vanderbilt chapter comes first, with a pilot group of students and volunteer mentors, so we can learn what works before adding chapters at other universities.\n\nImpact will be shared publicly as programs launch, focused on outcomes like students served, practice and goals reached, rather than reach alone.",
+        links: [{ label: "See GMI's goals for the next 12 months", href: "partners.html" }]
       };
       if (has(q, ["impact", "measure"])) return {
-        text: "GMI plans to measure impact by what changes for people. That means how many students get regular lessons and instruments, whether they reach their own goals, and whether partner communities say the work served them.\n\nThe five-year plan lays out these goals year by year.",
-        links: [{ label: "See the five-year plan", href: "plan.html" }]
+        text: "GMI plans to measure impact by what changes for students. That means how many get regular access to expert teaching and a mentor, whether they reach the goals they set, and whether they find instruments, teachers and opportunities they didn't have before.",
+        links: [{ label: "For partners and investors", href: "partners.html" }]
       };
       return {
-        text: "GMI is building toward an independent nonprofit with a board that brings legal, financial and fundraising strength. Student chapters, starting at Vanderbilt, are student-run and affiliated with the organization.\n\nThe five-year plan also includes an advisory board of musicians, educators and partners. If you're interested in serving, GMI would love to talk.",
-        links: [{ label: "Contact GMI about the board", href: "index.html#contact" }, { label: "See the five-year plan", href: "plan.html" }]
+        text: "GMI is preparing to incorporate as an independent nonprofit with a founding board that brings legal, financial and fundraising strength. Student chapters, starting at Vanderbilt, are student-run and affiliated with the organization.\n\nIf you're interested in serving, GMI would love to talk.",
+        links: [{ label: "Contact GMI about the board", href: "index.html?topic=Joining%20the%20board#contact" }, { label: "Meet the team", href: "team.html" }]
       };
     }
-    if (has(q, ["apply", "join", "cohort", "nepal trip"])) return {
-      text: "Students from any school or field can apply to the 2027 Nepal cohort. Applications are reviewed as they come in, and the final cohort is chosen by February 28, 2027. Needs-based funding is available.",
-      links: [{ label: "Apply now", href: "apply.html" }]
+    if (has(q, ["cohort", "nepal trip"])) return {
+      text: "College students from any school or field can apply to the 2027 Nepal cohort. The final cohort is chosen by February 28, 2027, and needs-based funding is available.",
+      links: [{ label: "Nepal cohort application", href: "apply.html" }]
+    };
+    if (has(q, ["apply", "join", "sign up", "cost", "price", "afford", "pay"])) return {
+      text: "Young musicians can apply to GMI with a parent or guardian. Beginners are welcome. Financial support is available for students who can demonstrate financial need.",
+      links: [{ label: "Apply as a student", href: "join.html" }]
     };
     if (has(q, ["mentor", "roadmap", "advice", "career"])) return {
-      text: "Try the Mentorship Advisor on GMI's home page. Pick your field, level and goal, and you'll get a starting roadmap plus a way to request a mentor match.",
+      text: "Yes. Every GMI student is matched with a trained volunteer mentor who helps them find what they need next, like an instrument, a teacher or college advice. You can also try the Mentorship Advisor on the home page for a starting roadmap.",
       links: [{ label: "Open the Mentorship Advisor", href: "index.html#mentorship" }]
     };
     if (has(q, ["nepal", "sarangi", "gandharva"])) return {
@@ -241,7 +272,7 @@
     };
     if (has(q, ["donate", "give", "support", "fund"])) return {
       text: "Online giving is coming soon. To support GMI now, send a message and the team will follow up.",
-      links: [{ label: "Contact us to give", href: "index.html#contact" }]
+      links: [{ label: "Ways to support GMI", href: "partners.html" }]
     };
     if (has(q, ["contact", "email", "talk"])) return {
       text: "You can reach GMI at info@globalmusicinitiative.org or through the contact form.",
@@ -426,12 +457,12 @@
 
   /* ---------------- 3. Floating drawer ---------------- */
   var QUICK = {
-    student: ["How do I join the Nepal cohort?", "Can I get a mentor?", "What is the Nepal project?", "What does Hulili mean?"],
-    board: ["What are GMI's governance goals?", "How will GMI expand chapters?", "How will GMI measure impact?", "How can I join the board?"]
+    student: ["How do I apply to GMI?", "Can I get a mentor?", "What if I can't afford it?", "What does Hulili mean?"],
+    board: ["What are GMI's governance goals?", "How will GMI grow?", "How will GMI measure impact?", "How can I join the board?"]
   };
 
   function initDrawer() {
-    if (document.getElementById("ai-drawer")) return;
+    if (document.getElementById("ai-drawer") || document.querySelector("[data-no-hulili-drawer]")) return;
     var audience = "student";
 
     var fab = el("button", { type: "button", class: "ai-fab", "aria-expanded": "false", "aria-controls": "ai-drawer" }, [
