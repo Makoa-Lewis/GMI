@@ -224,3 +224,18 @@ a.team-card:hover{transform:translateY(-2px);box-shadow:0 12px 28px -16px rgba(1
   .timeline li{grid-template-columns:1fr;gap:4px}
 }
 .role ul.chip-list{flex-direction:row;flex-wrap:wrap;padding-left:0;color:var(--text)}
+
+/* highlight strip, more open spacing */
+.brand-band{gap:clamp(24px,3vw,40px);padding-block:8px}
+.brand-band div{background:none;border:0;border-top:3px solid var(--navy-line);border-radius:0;padding:20px 0 0;gap:8px}
+.brand-band div:nth-child(1){border-top-color:var(--land)}
+.brand-band div:nth-child(2){border-top-color:var(--sun)}
+.brand-band div:nth-child(3){border-top-color:var(--sea)}
+.brand-band div:nth-child(4){border-top-color:var(--land)}
+.brand-band div:nth-child(5){border-top-color:var(--sun)}
+.brand-band strong{font-size:clamp(20px,1.9vw,26px);white-space:nowrap;color:var(--on-navy)}
+.brand-band span{font-size:15px;line-height:1.55}
+@media (max-width:900px){
+  .brand-band{grid-template-columns:repeat(2,1fr);row-gap:32px}
+  .brand-band div:last-child{grid-column:1/-1}
+}
