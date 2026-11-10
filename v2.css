@@ -239,3 +239,13 @@ a.team-card:hover{transform:translateY(-2px);box-shadow:0 12px 28px -16px rgba(1
   .brand-band{grid-template-columns:repeat(2,1fr);row-gap:32px}
   .brand-band div:last-child{grid-column:1/-1}
 }
+
+/* menu: keep links on one line, switch to the menu button below 1080px */
+.nav-links a{white-space:nowrap}
+@media (max-width:1080px){
+  .menu-btn{display:block}
+  .nav-links{display:none;position:absolute;top:72px;left:0;right:0;flex-direction:column;align-items:flex-start;gap:4px;background:var(--cream);padding:12px 24px 24px;border-bottom:1px solid var(--line)}
+  .nav-links.open{display:flex}
+  .nav-links a:not(.btn){display:block;padding:10px 0;font-size:18px}
+  .nav-links .btn{margin-top:8px}
+}
